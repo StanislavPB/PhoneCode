@@ -1,5 +1,7 @@
 package PhoneCode.core;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -10,13 +12,15 @@ import java.util.List;
 
 
 @Service
+@AllArgsConstructor
+
 public class CreateCodeList {
-
-
+        private  final ModificationCodeList modificationCodeList;
         private final List<String> codeList = new ArrayList<>();
         private final  List<String> modifyCodeList = new ArrayList<>();
 
-        public List<String> createCodeList (Document doc){
+
+    public List<String> createCodeList (Document doc){
 
         Elements links = doc.select("li");
 
@@ -33,7 +37,7 @@ public class CreateCodeList {
 
             for (int i = 0; i < codeList.size(); i++) {
 
-                String modifiedLine = modificationCodeList(codeList.get(i));
+                String modifiedLine = modificationCodeList.modificationList(codeList.get(i));
 
                 if (modifiedLine != " ") {
                     modifyCodeList.add(modifiedLine);

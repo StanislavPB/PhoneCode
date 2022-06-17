@@ -1,8 +1,15 @@
 package PhoneCode.core;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
+@AllArgsConstructor
+
 public class ModificationCodeList {
 
-    public String modificationCodeList(String line) {
+    public String modificationList(String line) {
         String modifiedLine = " ";
 
         if (line.contains("–")) {
