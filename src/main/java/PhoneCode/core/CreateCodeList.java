@@ -31,57 +31,19 @@ public class CreateCodeList {
                 }
         }
 
-        for (int i = 0; i < codeList.size(); i++) {
+            for (int i = 0; i < codeList.size(); i++) {
 
-            String modifiedLine = modificationCodeList(codeList.get(i));
+                String modifiedLine = modificationCodeList(codeList.get(i));
 
-            if  (modifiedLine != " ") {modifyCodeList.add(modifiedLine);}
+                if (modifiedLine != " ") {
+                    modifyCodeList.add(modifiedLine);
+                }
 
+            }
+
+            return modifyCodeList;
         }
 
 
-        for (int i = 0; i < modifyCodeList.size(); i++) {
-
-            System.out.println(modifyCodeList.get(i));
-
-        }
-
-
-            return null;
-        }
-
-
-    public static String modificationCodeList(String line) {
-        String modifiedLine=" ";
-
-        //System.out.println("line -> "+line);
-
-        if (line.contains("–")) {modifiedLine=line;}
-
-
-        if (modifiedLine.contains(" +")) {
-            int index1= modifiedLine.indexOf(" +");
-            modifiedLine=modifiedLine.substring(0,index1);}
-
-        if (modifiedLine.contains(",")) {
-            int index3= modifiedLine.indexOf(",");
-            modifiedLine=modifiedLine.substring(0,index3);}
-
-        if (modifiedLine.contains("(")) {
-            int index2= modifiedLine.indexOf("(");
-            modifiedLine=modifiedLine.substring(0,index2);}
-
-
-
-        if (modifiedLine.contains(" Many")) {modifiedLine = " ";}
-        if (modifiedLine.contains("^ a b")) {modifiedLine = " ";}
-        if (modifiedLine.contains("Phone calling")) {modifiedLine = " ";}
-
-
-
-        //System.out.println("modified line ->"+modifiedLine);
-
-        return modifiedLine;
-    }
 }
 
