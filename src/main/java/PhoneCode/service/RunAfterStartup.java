@@ -19,23 +19,17 @@ import java.util.List;
 
 public class RunAfterStartup {
 
-    private final GetPageFromWeb getPageFromWeb;
-    private final CreateCodeList createCodeList;
+    private final Browser browser;
 
 
     @EventListener(ApplicationReadyEvent.class)
     public void runAfterStartup() throws IOException {
 
-        List<String> finalCodeList = new ArrayList<>();
 
         System.out.println("Application is running........");
 
-        String url = "https://en.wikipedia.org/wiki/List_of_country_calling_codes";
 
-
-        Document doc = getPageFromWeb.getDataFromPage(url);
-
-        finalCodeList = createCodeList.createCodeList(doc);
+        browser.browser("http://localhost:8080/listCodes/");
 
 
 
