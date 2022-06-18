@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,16 +24,11 @@ public class Controller {
 
     public List<String> findAll() throws IOException {
 
-        List<String> finalCodeList = new ArrayList<>();
-
         String url = "https://en.wikipedia.org/wiki/List_of_country_calling_codes";
-
 
         Document doc = getPageFromWeb.getDataFromPage(url);
 
-        finalCodeList = createCodeList.createCodeList(doc);
-
-        return finalCodeList;
+        return createCodeList.createCodeList(doc);
     }
 
 
