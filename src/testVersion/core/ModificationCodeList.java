@@ -3,12 +3,11 @@ package PhoneCode.core;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@Service
-@AllArgsConstructor
+
 
 public class ModificationCodeList {
 
-    public String modificationList(String line) {
+    /*public String modificationList(String line) {
         String modifiedLine = " ";
 
         if (line.contains("–")) {
@@ -42,4 +41,6 @@ public class ModificationCodeList {
 
         return modifiedLine;
     }
+
+     */
 }

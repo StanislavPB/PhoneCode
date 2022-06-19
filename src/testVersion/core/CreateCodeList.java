@@ -8,11 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
-@AllArgsConstructor
 
 public class CreateCodeList {
-        private final ModificationCodeList modificationCodeList;
+  /*  private final ModificationCodeList modificationCodeList;
     private final TakeCodeListFromPage takeCodeListFromPage;
 
     public List<String> createCodeList (Document doc) {
@@ -22,18 +20,15 @@ public class CreateCodeList {
 
 
         for (int i = 0; i < codeList.size(); i++) {
-
             String modifiedLine = modificationCodeList.modificationList(codeList.get(i));
-
-            if (modifiedLine != " ") {
-                modifyCodeList.add(modifiedLine);
-            }
-
+            if (modifiedLine != " ") {modifyCodeList.add(modifiedLine);}
         }
 
             return modifyCodeList;
         }
 
+
+   */
 
 }
 

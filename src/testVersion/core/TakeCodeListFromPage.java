@@ -10,12 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
-@AllArgsConstructor
+
 
 public class TakeCodeListFromPage {
 
-    public List<String> takeCodeList(Document doc) {
+    /* public List<String> takeCodeList(Document doc) {
 
         List<String> codeList = new ArrayList<>();
 
@@ -34,6 +33,8 @@ public class TakeCodeListFromPage {
 
         return codeList;
     }
+
+     */
 
 }
 
