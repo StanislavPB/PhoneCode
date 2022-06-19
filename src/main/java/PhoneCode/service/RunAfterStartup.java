@@ -25,7 +25,7 @@ public class RunAfterStartup {
         System.out.println("Application is running........");
 
 
-        browser.browser("http://localhost:8080/listCodes/");
+        browser.browser("http://localhost:8080/");
 
 
 
