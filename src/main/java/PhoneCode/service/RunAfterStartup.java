@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class RunAfterStartup {
 
-    private final Browser browser;
+    private final BrowserOpener browserOpener;
 
 
     @EventListener(ApplicationReadyEvent.class)
@@ -25,7 +25,7 @@ public class RunAfterStartup {
         System.out.println("Application is running........");
 
 
-        browser.browser("http://localhost:8080/");
+        browserOpener.openLinkInBrowser("http://localhost:8080/");
 
 
 

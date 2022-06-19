@@ -1,7 +1,10 @@
 package PhoneCode.service;
 
 import org.springframework.stereotype.Service;
+
+
 import java.io.IOException;
+
 
 
 @Service
@@ -18,6 +21,7 @@ public class Browser {
             Runtime rt = Runtime.getRuntime();
 
             rt.exec("open " + urlApp);
+
         }
     }
 }
