@@ -15,7 +15,6 @@ public class ModificationCodeList {
             modifiedLine = line;
         }
 
-
         if (modifiedLine.contains(" +")) {
             int index1 = modifiedLine.indexOf(" +");
             modifiedLine = modifiedLine.substring(0, index1);

@@ -20,6 +20,14 @@ public class Controller {
     private final GetPageFromWeb getPageFromWeb;
     private final CreateCodeList createCodeList;
 
+    @GetMapping({"/"})
+
+    public String hello(){
+
+        String  greetings  = "Country phone code detection";
+
+        return greetings;}
+
     @GetMapping({"/listCodes"})
 
     public List<String> findAll() throws IOException {
@@ -30,6 +38,5 @@ public class Controller {
 
         return createCodeList.createCodeList(doc);
     }
-
 
 }
