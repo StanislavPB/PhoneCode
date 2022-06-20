@@ -31,7 +31,9 @@ public class Controller {
     @PostMapping
     public String checkCountry (@RequestBody String phoneNumber){
 
+        System.out.println(phoneNumber);
         String countryArea = "+"+phoneNumber.substring(0, (phoneNumber.length()-7));
+        System.out.println(countryArea);
         return countryArea;
     }
 

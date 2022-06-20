@@ -26,9 +26,10 @@ Vue.component('phone-form', {
         '</div>',
     methods:{
         check: function () {
-            var phone = {phoneNumber: this.phoneNumber};
-            codesApi.save({},phone)
-
+            var phone = this.phoneNumber;
+            codesApi.save({},phone)},
+        exit:function () {
+            System.exit(0);
         }
     }
 });
