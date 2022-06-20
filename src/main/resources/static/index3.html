@@ -70,6 +70,7 @@
 </head>
 <body>
 
+<form>
     <div>
 
         <h1>Country phone code detection.</h1>
@@ -77,16 +78,38 @@
         <h2>Display a Telephone Input Field</h2>
 
     </div>
+    <div>
+        <p>Enter your telephone number: </p>
+        <span class="countryDiv">
+            "+"
+      <input id="countryNo" aria-label="Country code (up  to 3 digits)" cols="20" name="countryNo"
+             pattern="[0-9]{1,3}))" placeholder="Country code (up  to 3 digits)"
+             required
+             type="tel"
+             style="width: 175px;">
+      <span class="validity"></span>
+    </span>
+        <span class="areaDiv">
+        <input id="areaNo" aria-label="Area code (3 digits)" name="areaNo" pattern="[0-9]{3}))"
+               placeholder="Area code (3 digits)" required
+               type="tel"
+               style="width: 175px;">
+        <span class="validity"></span>
+        </span>
 
-    <div id="app"></div>
+        <span class="numberDiv">
+      <input id="number" aria-label="Phone part of number  (7 digits)" name="number" pattern="[0-9]{7}"
+             placeholder="Phone part of number (7 digits)" required
+             type="tel"
+             style="width: 175px;">
+      <span class="validity"></span>
+    </span>
 
-    <script src="/js/main.js"></script>
-
+    </div>
     <div>
         <button>Submit</button>
     </div>
-
-
+</form>
 
 
 <script>

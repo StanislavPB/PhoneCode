@@ -22,9 +22,7 @@ public class GetMapFromWebPage {
 
         Map<String, String> codesMap = new HashMap<>();
 
-        Document document =
-                Jsoup.connect(
-                        "https://en.wikipedia.org/wiki/List_of_country_calling_codes").get();
+        Document document = Jsoup.connect(url).get();
         Element table = document.select("table.wikitable").get(1);
         Elements body = table.select("tbody");
         Elements rows = body.select("tr");

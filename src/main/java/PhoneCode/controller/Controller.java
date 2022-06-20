@@ -12,21 +12,11 @@ import java.util.Map;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("codes")
+
 public class Controller {
 
     private final GetMapFromWebPage getMapFromWebPage;
 
-
-    @GetMapping({"/"})
-
-    public String hello(){
-
-        String  greetings  = "Country phone code detection application.";
-
-
-
-        return greetings;}
 
     @GetMapping({"/listCodes"})
 

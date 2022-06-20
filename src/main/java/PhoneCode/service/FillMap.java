@@ -1,7 +1,6 @@
 package PhoneCode.service;
 
 
-import lombok.AllArgsConstructor;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
@@ -24,19 +23,15 @@ public class FillMap {
                 String name = columns.get(0).text();
                 String code = columns.get(1).text();
 
-                String[] arrOfStr = code.split(", ");;
+                String[] arrOfStr = code.split(",");;
 
                 for (String a : arrOfStr) {
                     if (a.contains("[")) {  a = a.substring(0,a.indexOf("["));}
-
-                    if (a.charAt(0)=='+') {codesMap.put( a,name);}
+                    if (a.charAt(0)=='+') {codesMap.put( a.trim(),name);}
                 }
             }
         }
-
         return codesMap;
     }
-
-
 }
 
