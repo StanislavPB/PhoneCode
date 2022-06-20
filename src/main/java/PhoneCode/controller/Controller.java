@@ -1,11 +1,13 @@
 package PhoneCode.controller;
 
 
+import PhoneCode.service.DetectCountry;
 import PhoneCode.service.GetMapFromWebPage;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -15,6 +17,8 @@ import java.util.Map;
 public class Controller {
 
     private final GetMapFromWebPage getMapFromWebPage;
+
+    private final DetectCountry detectCountry;
 
 
     @GetMapping
@@ -29,12 +33,14 @@ public class Controller {
     }
 
     @PostMapping
-    public String checkCountry (@RequestBody String phoneNumber){
+    public List<String> checkCountry (@RequestBody String phoneNumber) throws IOException {
 
-        System.out.println(phoneNumber);
+
         String countryArea = "+"+phoneNumber.substring(0, (phoneNumber.length()-7));
-        System.out.println(countryArea);
-        return countryArea;
+
+
+
+        return detectCountry.getCountry(countryArea);
     }
 
 

@@ -23,11 +23,13 @@ public class FillMap {
                 String name = columns.get(0).text();
                 String code = columns.get(1).text();
 
-                String[] arrOfStr = code.split(",");;
+                String[] arrayOfDoubleCode = code.split(",");;
 
-                for (String a : arrOfStr) {
-                    if (a.contains("[")) {  a = a.substring(0,a.indexOf("["));}
-                    if (a.charAt(0)=='+') {codesMap.put( a.trim(),name);}
+                for (String eachCode : arrayOfDoubleCode) {
+                    if (eachCode.contains("[")) {  eachCode = eachCode.substring(0,eachCode.indexOf("["));}
+                    if (eachCode.charAt(0)=='+') {
+                        eachCode = eachCode.replaceAll("\\s+","");
+                        codesMap.put( eachCode.trim(),name);}
                 }
             }
         }

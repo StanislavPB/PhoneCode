@@ -29,7 +29,7 @@ Vue.component('phone-form', {
             var phone = this.phoneNumber;
             codesApi.save({},phone)},
         exit:function () {
-            System.exit(0);
+            driver.quit();
         }
     }
 });
