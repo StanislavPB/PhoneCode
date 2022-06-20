@@ -10,7 +10,7 @@
         }
 
         svg:not(:root) {
-            display: flex;
+            display: block;
         }
 
         playable-code {
@@ -81,38 +81,6 @@
     <div id="app"></div>
 
     <script src="/js/main.js"></script>
-
-    <div>
-        <button>Submit</button>
-    </div>
-
-
-
-
-<script>
-    var selectElem = document.querySelector("select");
-    var inputElems = document.querySelectorAll("input");
-
-    selectElem.onchange = function () {
-        for (var i = 0; i < inputElems.length; i++) {
-            inputElems[i].value = "";
-        }
-
-        inputElems[2].parentNode.style.display = "inline";
-
-        inputElems[0].placeholder = "Country code";
-        inputElems[0].pattern = "[0-9]{1,3}))";
-
-        inputElems[1].placeholder = "Area code";
-        inputElems[1].pattern = "[0-9]{3}))";
-
-        inputElems[2].placeholder = "Phone part of number";
-        inputElems[2].pattern = "[0-9]{7}";
-        inputElems[2].setAttribute("aria-label", "Phone part of number  (7 digits)");
-
-    }
-
-</script>
 
 </body>
 </html>
