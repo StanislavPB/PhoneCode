@@ -29,6 +29,7 @@ public class FillMap {
                     if (eachCode.contains("[")) {  eachCode = eachCode.substring(0,eachCode.indexOf("["));}
                     if (eachCode.charAt(0)=='+') {
                         eachCode = eachCode.replaceAll("\\s+","");
+                        if (eachCode.equals("+1")) {name = "USA /Canada";}
                         codesMap.put( eachCode.trim(),name);}
                 }
             }

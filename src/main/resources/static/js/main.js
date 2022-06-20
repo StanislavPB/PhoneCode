@@ -29,14 +29,14 @@ Vue.component('phone-form', {
             var phone = this.phoneNumber;
             codesApi.save({},phone)},
         exit:function () {
-            driver.quit();
+            window.close();
         }
     }
 });
 
 
 Vue.component('country-form', {
-    props: 'country',
+    props: ['countries'],
     data: function() {
         return {
             country: null
