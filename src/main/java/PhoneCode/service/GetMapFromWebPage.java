@@ -1,5 +1,6 @@
 package PhoneCode.service;
 
+import lombok.AllArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,9 +13,14 @@ import java.util.Map;
 
 
 @Service
+@AllArgsConstructor
 public class GetMapFromWebPage {
 
+    final private FillMap fillMap;
+
     public Map<String, String> getDataFromPage(String url) throws IOException{
+
+        Map<String, String> codesMap = new HashMap<>();
 
         Document document =
                 Jsoup.connect(
@@ -23,16 +29,7 @@ public class GetMapFromWebPage {
         Elements body = table.select("tbody");
         Elements rows = body.select("tr");
 
-        Map<String, String> codesMap =
-                new HashMap<>();
-        for (Element row : rows) {
-            Elements columns = row.select("td");
-            if (columns.size() > 2) {
-                String name = columns.get(0).text();
-                String code = columns.get(1).text();
-                codesMap.put( code,name);
-            }
-        }
+        codesMap = fillMap.fillMap(rows);
 
         return codesMap;
     }
