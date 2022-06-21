@@ -33,12 +33,13 @@ public class Controller {
     }
 
     @PostMapping
-    public List<String> checkCountry (@RequestBody String phoneNumber) throws IOException {
+    public List<Map<String, String>> checkCountry (@RequestBody String phoneNumber) throws IOException {
 
+        System.out.println(phoneNumber);
 
         String countryArea = "+"+phoneNumber.substring(0, (phoneNumber.length()-7));
 
-         List<String > country =  detectCountry.getCountry(countryArea);
+        List<Map<String, String>> country =  detectCountry.getCountry(countryArea);
 
         System.out.println(phoneNumber +" -> "+country.toString());
 

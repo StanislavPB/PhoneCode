@@ -4,12 +4,14 @@ Vue.component('message-form', {
     props: ['messages', 'messageAttr'],
     data: function() {
         return {
-            text: '',
+            country: '',
+            phone: ''
         }
     },
     watch: {
         messageAttr: function(newVal, oldVal) {
-            this.text = newVal.text;
+            this.country = newVal.country;
+            this.phone=newVal.phone;
         }
     },
 
@@ -18,7 +20,7 @@ Vue.component('message-form', {
         '<h2>Enter your telephone number (11 - 13 digits): </h2>'+
         '<span className="enterCountryDiv">'+
         '+'+
-        '<input id="enterCountryNo" aria-label="Enter phone code"  name="enterCountryNo" pattern="[0-9]{11,13}" placeholder="Enter phone code" v-model=text type ="tel" style="width: 175px; font-size: large; text-align: right" />'+
+        '<input id="enterCountryNo" aria-label="Enter phone code"  name="enterCountryNo" pattern="[0-9]{11,13}" placeholder="Enter phone code" v-model=phone type ="tel" style="width: 175px; font-size: large; text-align: right" />'+
         '<span className="validity"></span>'+
         '</span>'+
         '<br>'+'<br>'+
@@ -29,12 +31,12 @@ Vue.component('message-form', {
 
     methods: {
         detect: function() {
-            var message = this.text;
+            var message = this.phone;
 
                 codesApi.save({}, message).then(result =>
                     result.json().then(data => {
                         this.messages.push(data);
-                        this.text = ''
+                        this.phone = ''
                     })
                 )
             },
@@ -48,7 +50,7 @@ Vue.component('message-form', {
 Vue.component('message-row', {
     props: ['message', 'messages'],
     template: '<div>' +
-        ' {{ message.text }}' +
+        '<i>({{ message.phone }})</i> {{ message.country }}'+
         '<span style="position: absolute; right: 0">' +
 
         '</span>' +
@@ -66,12 +68,13 @@ Vue.component('messages-list', {
     template:
         '<div style="position: relative; width: 300px;">' +
         '<message-form :messages="messages" :messageAttr="message" />' +
-        '<message-row v-for="message in messages" :message="message" '+
+        '<message-row v-for="message in messages"  :key="message.phone"  :message="message" '+
         '</div>',
+
     created: function() {
         codesApi.get().then(result =>
             result.json().then(data =>
-                data.result.forEach(message => this.messages.push(message))
+                data.forEach(message => this.messages.push(message))
             )
         )
     },
