@@ -38,9 +38,12 @@ public class Controller {
 
         String countryArea = "+"+phoneNumber.substring(0, (phoneNumber.length()-7));
 
+         List<String > country =  detectCountry.getCountry(countryArea);
+
+        System.out.println(phoneNumber +" -> "+country.toString());
 
 
-        return detectCountry.getCountry(countryArea);
+        return country;
     }
 
 
