@@ -5,13 +5,13 @@ Vue.component('message-form', {
     data: function() {
         return {
             country: '',
-            phone: ''
+            code: ''
         }
     },
     watch: {
         messageAttr: function(newVal, oldVal) {
             this.country = newVal.country;
-            this.phone=newVal.phone;
+            this.code = newVal.code;
         }
     },
 
@@ -31,28 +31,26 @@ Vue.component('message-form', {
 
     methods: {
         detect: function() {
-            var message = this.phone;
+            var message = { country: this.country };
 
-                codesApi.save({}, message).then(result =>
+            codesApi.save({}, message).then(result =>
                     result.json().then(data => {
                         this.messages.push(data);
-                        this.phone = ''
+                        this.country = ''
                     })
                 )
             },
         exit:function () {
             window.close();
         }
-        }
-
+    }
 });
 
 Vue.component('message-row', {
-    props: ['message', 'messages'],
+    props: ['message',  'messages'],
     template: '<div>' +
-        '<i>({{ message.phone }})</i> {{ message.country }}'+
+        '<i>({{ message.code }})</i> {{ message.country }}' +
         '<span style="position: absolute; right: 0">' +
-
         '</span>' +
         '</div>',
 
@@ -68,9 +66,8 @@ Vue.component('messages-list', {
     template:
         '<div style="position: relative; width: 300px;">' +
         '<message-form :messages="messages" :messageAttr="message" />' +
-        '<message-row v-for="message in messages"  :key="message.phone"  :message="message" '+
+        '<message-row v-for="message in messages" :key="message.code" :message="message" ' +
         '</div>',
-
     created: function() {
         codesApi.get().then(result =>
             result.json().then(data =>
@@ -78,11 +75,7 @@ Vue.component('messages-list', {
             )
         )
     },
-    methods: {
-        editMethod: function(message) {
-            this.message = message;
-        }
-    }
+
 });
 
 var app = new Vue({
