@@ -8,12 +8,7 @@ Vue.component('message-form', {
             phone: ''
         }
     },
-    watch: {
-        messageAttr: function(newVal, oldVal) {
-            this.country = newVal.country;
-            this.phone=newVal.phone;
-        }
-    },
+
 
     template:
         '<div>' +
@@ -41,6 +36,7 @@ Vue.component('message-form', {
                 )
             },
         exit:function () {
+            window.location.href = "http://localhost:8080/exit"
             window.close();
         }
         }
