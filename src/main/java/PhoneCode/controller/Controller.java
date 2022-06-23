@@ -36,7 +36,6 @@ public class Controller {
     public List<Map<String, String>> checkCountry (@RequestBody String phoneNumber) throws IOException {
 
         System.out.println(phoneNumber);
-
         String countryArea = "+"+phoneNumber.substring(0, (phoneNumber.length()-7));
 
         List<Map<String, String>> country =  detectCountry.getCountry(countryArea);

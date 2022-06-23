@@ -5,13 +5,13 @@ Vue.component('message-form', {
     data: function() {
         return {
             country: '',
-            code: ''
+            phone: ''
         }
     },
     watch: {
         messageAttr: function(newVal, oldVal) {
             this.country = newVal.country;
-            this.code = newVal.code;
+            this.phone=newVal.phone;
         }
     },
 
@@ -31,26 +31,28 @@ Vue.component('message-form', {
 
     methods: {
         detect: function() {
-            var message = { country: this.country };
+            var message = this.phone;
 
-            codesApi.save({}, message).then(result =>
+                codesApi.save({}, message).then(result =>
                     result.json().then(data => {
                         this.messages.push(data);
-                        this.country = ''
+                        this.phone = ''
                     })
                 )
             },
         exit:function () {
             window.close();
         }
-    }
+        }
+
 });
 
 Vue.component('message-row', {
-    props: ['message',  'messages'],
+    props: ['message', 'messages'],
     template: '<div>' +
-        '<i>({{ message.code }})</i> {{ message.country }}' +
+        '<i>({{ message.phone }})</i> {{ message.country }}'+
         '<span style="position: absolute; right: 0">' +
+
         '</span>' +
         '</div>',
 
@@ -66,16 +68,21 @@ Vue.component('messages-list', {
     template:
         '<div style="position: relative; width: 300px;">' +
         '<message-form :messages="messages" :messageAttr="message" />' +
-        '<message-row v-for="message in messages" :key="message.code" :message="message" ' +
+        '<message-row v-for="message in messages"  :key="message.phone"  :message="message" '+
         '</div>',
+
     created: function() {
-        codesApi.get().then(result =>
-            result.json().then(data =>
-                data.forEach(message => this.messages.push(message))
+     codesApi.get().then(result =>
+         result.json().then(data =>
+               data.forEach(message => this.messages.push(message))
             )
         )
     },
-
+    methods: {
+        editMethod: function(message) {
+            this.message = message;
+        }
+    }
 });
 
 var app = new Vue({
