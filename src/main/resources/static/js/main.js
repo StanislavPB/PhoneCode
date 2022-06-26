@@ -67,12 +67,6 @@ Vue.component('messages-list', {
         '<message-row v-for="message in messages"   :message="message" '+
         '</div>',
 
-    created: function() {
-     codesApi.get().then(result =>
-         result.json().then(data=>
-         console.log(data))
-        )
-    },
 });
 
 var app = new Vue({

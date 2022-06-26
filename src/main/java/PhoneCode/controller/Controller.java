@@ -2,12 +2,12 @@ package PhoneCode.controller;
 
 
 import PhoneCode.service.DetectCountry;
-import PhoneCode.service.GetMapFromWebPage;
+
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 
@@ -36,14 +36,13 @@ public class Controller {
         Map<String, String> country =  detectCountry.getCountry(countryArea);
 
 
-        for (Map.Entry entry : country.entrySet()) {
+        country.forEach((key, value) -> {
 
-            System.out.println("Detected->"+entry.getValue()+" "+ entry.getKey());
-            String message="Your phone number - "+ phoneNumber+ "  Country code - " + entry.getKey()
-                    + "  Country is "+ entry.getValue();
+            String message = "Your phone number - " + phoneNumber + "  Country code - " + key
+                    + "  Country is " + value;
 
             messages.add(message);
-        }
+        });
 
         System.out.println("return: "+ messages.toString());
 
