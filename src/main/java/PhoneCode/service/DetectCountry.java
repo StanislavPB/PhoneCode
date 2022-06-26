@@ -49,8 +49,6 @@ public class DetectCountry {
                 country.put(codeForCheck3,entry.getValue());
             }
 
-         //   System.out.println(codeForCheck +" " + codeForCheck1 +" " + codeForCheck2 +" " + codeForCheck3 +" " + country.toString());
-
         }
 
         if  (country.isEmpty()) {
