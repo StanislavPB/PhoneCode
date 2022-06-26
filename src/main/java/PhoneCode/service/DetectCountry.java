@@ -12,13 +12,13 @@ public class DetectCountry {
 
     private final GetMapFromWebPage getMapFromWebPage;
 
-    public List<Map<String, String>> getCountry(String codeForCheck) throws IOException {
+    public Map<String, String> getCountry(String codeForCheck) throws IOException {
 
         String url = "https://en.wikipedia.org/wiki/List_of_country_calling_codes";
 
         var codeList = getMapFromWebPage.getDataFromPage(url);
 
-        List<Map<String, String>> countryList = new ArrayList<Map<String, String>>();
+        Map<String, String> country = new HashMap<>();
 
         for (Map.Entry<String,String> entry : codeList.entrySet()) {
 
@@ -29,25 +29,34 @@ public class DetectCountry {
             String codeForCheck2= codeForCheck.substring(0,codeForCheck.length()-2);
             String codeForCheck3= codeForCheck.substring(0,codeForCheck.length()-3);
 
-            if (Objects.equals(entry.getKey(), codeForCheck)){
-                countryList.add(new HashMap<String,String>() {{put("phone",codeForCheck); put("country",entry.getValue());}});
-               }
-            if (Objects.equals(entry.getKey(), codeForCheck1)){
-                countryList.add(new HashMap<String,String>() {{put("phone",codeForCheck1); put("country",entry.getValue());}});
-            }
-            if (Objects.equals(entry.getKey(), codeForCheck2)){
-                countryList.add(new HashMap<String,String>() {{put("phone",codeForCheck2); put("country",entry.getValue());}});
+            boolean check = Objects.equals(entry.getKey(), codeForCheck);
+            boolean check1 = Objects.equals(entry.getKey(), codeForCheck1);
+            boolean check2 = Objects.equals(entry.getKey(), codeForCheck2);
+            boolean check3 = Objects.equals(entry.getKey(), codeForCheck3);
 
-            }
-            if (Objects.equals(entry.getKey(), codeForCheck3)){
-                countryList.add(new HashMap<String,String>() {{put("phone",codeForCheck3); put("country",entry.getValue());}});
 
+
+            if (check){
+                country.put(codeForCheck,entry.getValue());}
+
+            if (check1){
+                country.put(codeForCheck1,entry.getValue());}
+
+            if (check2){
+                country.put(codeForCheck2,entry.getValue());}
+
+            if (check3){
+                country.put(codeForCheck3,entry.getValue());
             }
 
-            System.out.println(codeForCheck +" " + codeForCheck1 +" " + codeForCheck2 +" " + codeForCheck3 +" " + countryList.toString());
+         //   System.out.println(codeForCheck +" " + codeForCheck1 +" " + codeForCheck2 +" " + codeForCheck3 +" " + country.toString());
 
         }
 
-        return countryList;
+        if  (country.isEmpty()) {
+            country.put("Error code"," Error! Country has not detected!");
+        }
+
+        return country;
     }
 }

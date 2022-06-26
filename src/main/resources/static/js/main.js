@@ -1,14 +1,13 @@
 var codesApi = Vue.resource('/codes{/id}');
 
 Vue.component('message-form', {
-    props: ['messages', 'messageAttr'],
+    props: ['messages'],
     data: function() {
         return {
-            country: '',
+            message: '',
             phone: ''
         }
     },
-
 
     template:
         '<div>' +
@@ -26,9 +25,9 @@ Vue.component('message-form', {
 
     methods: {
         detect: function() {
-            var message = this.phone;
+            let phone = this.phone;
 
-                codesApi.save({}, message).then(result =>
+                codesApi.save({},phone).then(result =>
                     result.json().then(data => {
                         this.messages.push(data);
                         this.phone = ''
@@ -46,7 +45,7 @@ Vue.component('message-form', {
 Vue.component('message-row', {
     props: ['message', 'messages'],
     template: '<div>' +
-        '<i>({{ message.phone }})</i> {{ message.country }}'+
+        '<div><div v-for="message in messages" {{ message.country }} </div></div'+
         '<span style="position: absolute; right: 0">' +
 
         '</span>' +
@@ -64,21 +63,16 @@ Vue.component('messages-list', {
     template:
         '<div style="position: relative; width: 300px;">' +
         '<message-form :messages="messages" :messageAttr="message" />' +
-        '<message-row v-for="message in messages"  :key="message.phone"  :message="message" '+
+        'Список стран:'+
+        '<message-row v-for="message in messages"   :message="message" '+
         '</div>',
 
     created: function() {
      codesApi.get().then(result =>
-         result.json().then(data =>
-               data.forEach(message => this.messages.push(message))
-            )
+         result.json().then(data=>
+         console.log(data))
         )
     },
-    methods: {
-        editMethod: function(message) {
-            this.message = message;
-        }
-    }
 });
 
 var app = new Vue({
