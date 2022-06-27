@@ -45,7 +45,7 @@ Vue.component('message-form', {
 Vue.component('message-row', {
     props: ['message', 'messages'],
     template: '<div>' +
-        '<div><div v-for="message in messages" {{ message.country }} </div></div'+
+        '<div><div v-for="message in messages" {{ message}} </div></div'+
         '<span style="position: absolute; right: 0">' +
 
         '</span>' +
@@ -67,6 +67,12 @@ Vue.component('messages-list', {
         '<message-row v-for="message in messages"   :message="message" '+
         '</div>',
 
+    created: function() {
+     codesApi.get().then(result =>
+         result.json().then(data=>
+         console.log(data))
+        )
+    },
 });
 
 var app = new Vue({
