@@ -22,11 +22,6 @@ public class Controller {
 
     @GetMapping
 
-    public List< String> list() {
-        return messages;
-    }
-
-    @PostMapping
     public List<String> checkCountry (@RequestBody String phoneNumber) throws IOException {
 
         messages.clear();
@@ -50,4 +45,4 @@ public class Controller {
         return messages;
     }
 
-}
+  }

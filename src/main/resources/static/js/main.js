@@ -21,7 +21,8 @@ Vue.component('message-form', {
         '<input type="button" value="Detect country" @click="detect" />'+
         '<br>'+'<br>'+
         '<input type="button" value="Exit" @click="exit" />'+'<br>'+'<br>'+'<br>'+'<br>'+
-        '</div>',
+        '</div>'+
+        '<div v-for="message in messages" {{ message}} </div>',
 
     methods: {
         detect: function() {
@@ -29,6 +30,7 @@ Vue.component('message-form', {
 
                 codesApi.save({},phone).then(result =>
                     result.json().then(data => {
+                        console.log(data)
                         this.messages.push(data);
                         this.phone = ''
                     })
@@ -43,13 +45,8 @@ Vue.component('message-form', {
 });
 
 Vue.component('message-row', {
-    props: ['message', 'messages'],
-    template: '<div>' +
-        '<div><div v-for="message in messages" {{ message}} </div></div'+
-        '<span style="position: absolute; right: 0">' +
-
-        '</span>' +
-        '</div>',
+    props: ['message'],
+    template: '<div>  {{ message}} </div>'
 
 });
 
@@ -64,7 +61,7 @@ Vue.component('messages-list', {
         '<div style="position: relative; width: 300px;">' +
         '<message-form :messages="messages" :messageAttr="message" />' +
         'Список стран:'+
-        '<message-row v-for="message in messages"   :message="message" '+
+        '<div message-row v-for="message in messages"   :message="message" /></div> '+
         '</div>',
 
     created: function() {
