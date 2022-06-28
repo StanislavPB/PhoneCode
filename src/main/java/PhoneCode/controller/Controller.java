@@ -20,7 +20,13 @@ public class Controller {
 
     private List <String> messages;
 
+
     @GetMapping
+    public List<String> list() {
+        return messages;
+    }
+
+    @PostMapping
 
     public List<String> checkCountry (@RequestBody String phoneNumber) throws IOException {
 

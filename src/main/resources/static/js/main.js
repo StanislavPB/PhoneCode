@@ -4,6 +4,7 @@ Vue.component('message-form', {
     props: ['messages'],
     data: function() {
         return {
+            messages: '',
             message: '',
             phone: ''
         }
@@ -40,8 +41,7 @@ Vue.component('message-form', {
             window.location.href = "http://localhost:8080/exit"
             window.close();
         }
-        }
-
+    }
 });
 
 Vue.component('message-row', {
@@ -54,14 +54,15 @@ Vue.component('messages-list', {
     props: ['messages'],
     data: function() {
         return {
-            message: null
+            message: null,
+            messages: null
         }
     },
     template:
         '<div style="position: relative; width: 300px;">' +
         '<message-form :messages="messages" :messageAttr="message" />' +
         'Список стран:'+
-        '<div message-row v-for="message in messages"   :message="message" /></div> '+
+        '<div> <message-row v-for="message in messages" :message="message" /></div> '+
         '</div>',
 
     created: function() {
