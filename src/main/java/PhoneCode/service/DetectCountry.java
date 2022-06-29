@@ -22,9 +22,6 @@ public class DetectCountry {
 
         for (Map.Entry<String,String> entry : codeList.entrySet()) {
 
-
-            System.out.println(entry.getKey()+" -> "+entry.getValue());
-
             String codeForCheck1= codeForCheck.substring(0,codeForCheck.length()-1);
             String codeForCheck2= codeForCheck.substring(0,codeForCheck.length()-2);
             String codeForCheck3= codeForCheck.substring(0,codeForCheck.length()-3);

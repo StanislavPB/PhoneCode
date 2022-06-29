@@ -44,10 +44,7 @@ public class Controller {
 
             messages.add(message);
         });
-
-        System.out.println("return: "+ messages.toString());
-
-
+        
         return messages;
     }
 
