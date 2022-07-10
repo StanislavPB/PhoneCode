@@ -16,7 +16,7 @@ public class DetectCountry {
 
         String url = "https://en.wikipedia.org/wiki/List_of_country_calling_codes";
 
-        var codeList = getMapFromWebPage.getDataFromPage(url);
+        Map<String, String> codeList = getMapFromWebPage.getDataFromPage(url);
 
         Map<String, String> country = new HashMap<>();
 
